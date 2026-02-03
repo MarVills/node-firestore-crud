@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRUD App with Firestore</title>
+    <style>
+      /* Reset some default styles */
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f9fafb;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 30px 0;
+        color: #4a90e2;
+      }
+
+      /* Form styling */
+      form {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      form input {
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        flex: 1 1 200px;
+      }
+
+      form button {
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+      }
+
+      form button[type="submit"] {
+        background-color: #4a90e2;
+        color: #fff;
+      }
+
+      form button[type="submit"]:hover {
+        background-color: #357ab8;
+      }
+
+      form button#cancelEdit {
+        background-color: #e94e4e;
+        color: #fff;
+      }
+
+      form button#cancelEdit:hover {
+        background-color: #c03939;
+      }
+
+      /* Table styling */
+      table {
+        width: 90%;
+        margin: 0 auto 50px;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 12px 15px;
+      }
+
+      th {
+        background-color: #4a90e2;
+        color: #fff;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f4f6f8;
+      }
+
+      tr:hover {
+        background-color: #e1f0ff;
+      }
+
+      /* Action buttons */
+      .action-btn {
+        padding: 6px 12px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9em;
+        color: #fff;
+        transition: background 0.3s;
+      }
+
+      .edit-btn {
+        background-color: #f0ad4e;
+      }
+
+      .edit-btn:hover {
+        background-color: #ec971f;
+      }
+
+      .delete-btn {
+        background-color: #d9534f;
+      }
+
+      .delete-btn:hover {
+        background-color: #c9302c;
+      }
+
+      @media (max-width: 600px) {
+        form {
+          flex-direction: column;
+        }
+
+        form input {
+          flex: 1 1 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CRUD App</h1>
+
+    <form id="recordForm">
+      <input type="hidden" id="recordId" />
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <button type="submit">Save</button>
+      <button type="button" id="cancelEdit">Cancel</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="recordsTable"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+  </body>
+</html>
